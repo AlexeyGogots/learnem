@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace>Nucleus</RootNamespace>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Include="FunctionAdapters.fs" />
+      <Compile Include="Option.fs" />
+      <Compile Include="Result.fs" />
+      <Compile Include="Async.fs" />
+      <Compile Include="Validation.fs" />
+      <Compile Include="AsyncResult.fs" />
+      <Compile Include="GenericError.fs" />
+      <Compile Include="LocationContext.fs" />
+      <Compile Include="List.fs" />
+      <Compile Include="Tupple.fs" />
+      <Compile Include="IO.fs" />
+    </ItemGroup>
+
+</Project>

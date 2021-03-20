@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "learnem", "learnem\learnem.fsproj", "{FE034640-AF47-49F7-87CE-DD5A586BE5BE}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "nucleus", "nucleus\nucleus.fsproj", "{4A1C4BF4-CD26-4275-B429-D28729F36F05}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "tests", "tests\tests.fsproj", "{6A7D7C93-A6C5-4BF1-AA11-F778ECA41A85}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE034640-AF47-49F7-87CE-DD5A586BE5BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE034640-AF47-49F7-87CE-DD5A586BE5BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE034640-AF47-49F7-87CE-DD5A586BE5BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE034640-AF47-49F7-87CE-DD5A586BE5BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A1C4BF4-CD26-4275-B429-D28729F36F05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A1C4BF4-CD26-4275-B429-D28729F36F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A1C4BF4-CD26-4275-B429-D28729F36F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A1C4BF4-CD26-4275-B429-D28729F36F05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A7D7C93-A6C5-4BF1-AA11-F778ECA41A85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A7D7C93-A6C5-4BF1-AA11-F778ECA41A85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A7D7C93-A6C5-4BF1-AA11-F778ECA41A85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A7D7C93-A6C5-4BF1-AA11-F778ECA41A85}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
