@@ -4,6 +4,7 @@
         <OutputType>Exe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
         <RootNamespace>Learnem</RootNamespace>
+        <PackageIconUrl>belgium-flag.ico</PackageIconUrl>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -11,13 +12,25 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Content Include="data\artikels.csv" />
-        <Content Include="data\irreguliere participiumvormen.csv" />
-        <Content Include="data\meervoud.csv" />
-        <Content Include="data\worden.tsv" />
-        <Compile Include="Model.fs" />
-        <Compile Include="Implementation.fs" />
+        <Content Include="Data\artikels.tsv">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Data\irreguliere participiumvormen.tsv">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Data\meervoud.tsv">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Data\worden.tsv">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Compile Include="Core\Model.fs" />
+        <Compile Include="Core\Implementation.fs" />
+        <Compile Include="Infrastructure\SingleCaseUnionConverter.fs" />
+        <Compile Include="Infrastructure\Serialization.fs" />
+        <Compile Include="Infrastructure\FileIO.fs" />
         <Compile Include="Program.fs" />
+        <Content Include="belgium-flag.ico" />
     </ItemGroup>
 
     <ItemGroup>
@@ -26,6 +39,8 @@
 
     <ItemGroup>
       <PackageReference Include="FSharp.Data" Version="3.3.3" />
+      <PackageReference Include="Microsoft.FSharpLu.Json" Version="0.11.6" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>
 
 </Project>
