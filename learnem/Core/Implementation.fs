@@ -68,7 +68,8 @@ module Implementation =
         |> Map.filter (fun _ (_, Answers answers) -> answers.Length >= 5 && answers.Length < 10)
         |> Map.filter (fun _ (Timestamp dt, Answers answers) -> isLearned dt answers)
         |> Map.toList
-        |> List.sortBy (fun (_, (Timestamp time, _)) -> time)
+        |> List.map (fun (term, (time, Answers answers)) -> term, (answers, time))
+        |> List.sortBy snd
         |> List.choose (fun (term, _) -> find term)
         |> List.tryTake 3
 
@@ -82,7 +83,15 @@ module Implementation =
         |> Map.filter (fun _ (_, Answers answers) -> answers.Length < 5 || answers |> List.tryTake 5 |> List.forall id |> not)
         |> Map.filter (fun _ (Timestamp dt, Answers answers) -> isStarted dt answers)
         |> Map.toList
+        |> List.map (fun (term, (time, Answers answers)) -> term, (answers, time))
+        |> List.sortBy snd
         |> List.choose (fun (term, _) -> find term)
+
+    let shuffle (rnd : Random) (cards : _ list) =
+        cards
+        |> List.map (fun card -> rnd.Next(1000), card)
+        |> List.sortBy fst
+        |> List.map snd
 
     let prepareWorkSet count (cards : Flashcards) (journal : Journal) : IO<_, WorkSet, GenericError> =
         io {
@@ -98,7 +107,7 @@ module Implementation =
             let cards = cards |> Flashcards.exclude journal |> Flashcards.toArray
             let totalCount = Array.length cards - count'
 
-            let rnd = Random()
+            let rnd = Random(now.Millisecond)
 
             return
                 [ 1 .. count' * 10 ]
@@ -108,6 +117,7 @@ module Implementation =
                 |> List.map (fun index -> cards.[index])
                 |> List.append familiar
                 |> List.tryTake count
+                |> shuffle rnd
                 |> WorkSet
         }
 
@@ -181,10 +191,10 @@ module Implementation =
 
     let session journal (WorkSet workset) =
         List.foldBack (fun card journal ->
-            io {
-                let! journal = journal
-                let term = Flashcard.term card
-                let! answer = ask card
-                let answers = Answers.add answer <| Journal.record journal term
-                return Journal.update journal term (Timestamp DateTimeOffset.Now) answers
-            }) workset (IO.ret journal)
+        io {
+            let! journal = journal
+            let term = Flashcard.term card
+            let! answer = ask card
+            let answers = Answers.add answer <| Journal.record journal term
+            return Journal.update journal term (Timestamp DateTimeOffset.Now) answers
+        }) workset (IO.ret journal)
